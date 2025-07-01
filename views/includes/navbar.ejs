@@ -1,0 +1,78 @@
+<style>
+  .nav-link:hover {
+    background-color: #f8d7da !important;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+    border-radius: 5px;
+    transition: all 0.2s ease;
+  }
+
+  /* Cool gradient buttons */
+  .btn-gradient {
+    background: linear-gradient(135deg, #ff6a6a, #ff3d3d);
+    color: white !important;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 50px;
+    border: none;
+    box-shadow: 0 4px 10px rgba(255, 61, 61, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .btn-gradient:hover {
+    background: linear-gradient(135deg, #ff3d3d, #e60000);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(255, 0, 0, 0.4);
+  }
+</style>
+
+<nav
+  class="navbar navbar-expand-md bg-white shadow-sm border-bottom sticky-top py-2"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold text-dark" href="/listings">
+      <i class="fa-solid fa-compass me-1"></i>TravelEase
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link text-dark fw-semibold px-3" href="/listings">Home</a>
+        <a class="nav-link text-dark fw-semibold px-3" href="/listings"
+          >All Listings</a
+        >
+        <a class="nav-link text-dark fw-semibold px-3" href="/listings/new"
+          >Add new listings</a
+        >
+      </div>
+
+      <!-- Right-side buttons -->
+      <div class="ms-auto d-flex gap-2 align-items-center">
+        <% if (!currentUser) { %>
+        <a href="/login" class="btn btn-gradient btn-sm">Login</a>
+        <a href="/signup" class="btn btn-gradient btn-sm">Sign Up</a>
+        <% } else { %>
+        <span
+          class="btn btn-outline-secondary btn-sm px-3 rounded-pill shadow-sm"
+        >
+          Welcome, <%= currentUser.username %>
+        </span>
+        <form action="/logout" method="POST" class="d-inline">
+          <button
+            type="submit"
+            class="btn btn-danger fw-semibold btn-sm px-4 py-1 rounded-pill shadow-sm"
+          >
+            Logout
+          </button>
+        </form>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

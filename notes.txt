@@ -1,0 +1,49 @@
+--------state-------
+
+stateful protocol 
+-> stateful protocol requires server to save the status and session information
+eg: - ftp (file transfer protocol)
+
+ stateless protocol 
+  -> stateless protocol does not require rhe server to retain the server information
+  eg: http
+
+
+  express session 
+  -> an attempt to make our session stateful
+
+
+  -----authentication and authorization------
+
+  -> authentication is the process of verifying who someone is .......
+
+  -> authorization is the process of verifying what specific applications ,files ,and data a user has accesss to ........
+
+
+  --- storing passwords---
+  -> we never store the passwords as it is ....we stored their hashed form 
+
+  -----Hashing function ----
+  -> for every input , there is a fixed output 
+  -> they are one-way functions, we cant get input from output 
+  -> for a different input , there is a different  output but of same length
+  -> small changes in input should bring large changes in output
+
+  -> hashing fn example - SHA256, MD5, CRC
+
+  -------salting --------
+
+  -> password salting is a technique to protect passwords stored in databases by addinga a string of 32 or more characters and then hashing them
+
+  ->Passport is authentication middleware for Node.js. Extremely flexible and modular
+   A comprehensive set of strategies support authentication using a username and password, Facebook, Twitter, and more.
+
+   -> passport.session()
+   - a web application needs the ability to identify users as they browse from page to page .... this series of requests and responses , each associated with the same user is known as session
+
+   ->  in passport register method is used to save usename and password correctly
+
+in passport  - we use pbkdf2 hashing algorithm
+
+
+

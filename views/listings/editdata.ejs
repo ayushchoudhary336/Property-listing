@@ -1,0 +1,131 @@
+<% layout("/layouts/boilerplate") %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Listing</title>
+  </head>
+  <body>
+    <h1 class="text-center mb-4 text-primary fw-light">Edit your listings</h1>
+    <form
+      method="POST"
+      action="/listings/<%= listing._id %>?_method=PUT"
+      class="mx-auto p-3 bg-light rounded shadow-sm needs-validation"
+      style="max-width: 480px"
+      novalidate
+    >
+      <div class="mb-3">
+        <label class="form-label small text-muted">Title</label>
+        <input
+          type="text"
+          name="Listing[title]"
+          value="<%= listing.title %>"
+          class="form-control form-control-sm border-bottom rounded-2"
+          required
+        />
+        <div class="invalid-feedback">Please enter a title.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label small text-muted">Description</label>
+        <textarea
+          name="Listing[description]"
+          rows="2"
+          class="form-control form-control-sm border-bottom rounded-2"
+          required
+        >
+<%= listing.description %></textarea
+        >
+        <div class="invalid-feedback">Please enter a description.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label small text-muted">Image URL</label>
+        <input
+          type="url"
+          name="Listing[image][url]"
+          value="<%= listing.image?.url %>"
+          class="form-control form-control-sm border-bottom rounded-2"
+          pattern="https?://.+"
+          required
+        />
+        <div class="invalid-feedback">
+          Please enter a valid image URL (starting with http:// or https://).
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label small text-muted">Image Filename</label>
+        <input
+          type="text"
+          name="Listing[image][filename]"
+          value="<%= listing.image?.filename %>"
+          class="form-control form-control-sm border-bottom rounded-2"
+        />
+      </div>
+
+      <div class="row g-2 mb-3">
+        <div class="col">
+          <label class="form-label small text-muted">Price</label>
+          <input
+            type="number"
+            name="Listing[price]"
+            value="<%= listing.price %>"
+            class="form-control form-control-sm border-bottom rounded-2"
+            min="1"
+            required
+          />
+          <div class="invalid-feedback">Please enter a valid price.</div>
+        </div>
+        <div class="col">
+          <label class="form-label small text-muted">Country</label>
+          <input
+            type="text"
+            name="Listing[country]"
+            value="<%= listing.country %>"
+            class="form-control form-control-sm border-bottom rounded-2"
+            required
+          />
+          <div class="invalid-feedback">Please enter a country.</div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label small text-muted">Location</label>
+        <input
+          type="text"
+          name="Listing[location]"
+          value="<%= listing.location %>"
+          class="form-control form-control-sm border-bottom rounded-2"
+          required
+        />
+        <div class="invalid-feedback">Please enter a location.</div>
+      </div>
+
+      <button class="btn btn-primary btn-sm w-50 rounded-3 mx-auto d-block">
+        Save Changes
+      </button>
+    </form>
+
+    <script>
+      (() => {
+        "use strict";
+        const forms = document.querySelectorAll(".needs-validation");
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
+    </script>
+  </body>
+</html>
