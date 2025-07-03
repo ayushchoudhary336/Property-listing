@@ -196,8 +196,7 @@ app.get("/getcookie", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  console.dir(req.cookies);
-  res.send("Server is running");
+  res.redirect("/listings");
 });
 
 app.post("/logout", (req, res, next) => {
